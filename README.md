@@ -12,4 +12,6 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         -> Instalando o flask
             Como? no terminal "pip install flask"
 
-# 
+# estrutura basica flask
+    1. -> criar o arquivo principal por convensão "main.py", ideal "app.py"
+    
