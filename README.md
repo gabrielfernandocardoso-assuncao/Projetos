@@ -23,3 +23,31 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     2. -> Metodos GET e POST
         I. Requisição GET: O usuario pede um dado para o servidor e transmite na tela (pode ou nao acessar o banco de dados.) Ex: eu quero acessar a pagina "X"
         II. Requisição POST: o usuario envia dados para o servidor, conceito CRUD.
+
+# Estruturando o projeto
+    1. -> a estrutura fica da seguinte forma
+        pasta Meu projeto/
+            -> pasta "app/"
+                -> pasta "static/"
+                    -> pasta "css/"
+                    -> pasta "js/"
+                    -> pasta "img/"
+                -> pasta "templates/"
+                    -> arquivos ".html"
+                    -> arquivo "base.html"
+                -> arquivo "__init__.py"
+                -> arquivo "forms.py"
+                -> arquivo "models.py"
+                -> arquivo "routes.py"
+            -> arquivo "main.py" # por convensão "app.py"
+    2. -> aplicando os conceitos no projeto
+        I. realoquei o import Flask do app.py para o __init__.py
+            a. importei o aplicativo no __init__.py
+        II. realoquei as rotas do arquivo app.py para o views.py
+            a. importei o aplicativo na view.py
+            b. no __init__ para evitar erro de url eu importei a view do views.py
+        III. importei no views a classe render template
+            a. passei o template index.html para renderizar na função.
+            b. transformei o index no base
+            c. criei o index novamente
+            d. renderizei o arquivo index na função da homepage
