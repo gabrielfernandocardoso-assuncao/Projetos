@@ -55,3 +55,17 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         I. na views.py eu crio outra view de acesso ao menu, vendo que o inicio vai ser uma pagina de login.
         II. import url_for dentro da views.py
             a. apliquei o url_for no index.
+    4. -> Preparando o app para trabalhar com o banco de dados
+        I.instalando as biliotecas
+            a. pip install Flask-SQLAlchemy Flask-Migrate
+            b. importar as ferramentas no init
+                1. configurando elas no init
+            c. criei o arquivo models.py no projeto
+            d. crio a tabela no models e depois importo ela no init
+            e. crio o arquivo wsgi
+        II. Criando banco de dados
+            a. flask db init
+        III. salvando os dados
+            a. flask db migrate -m "msg" # dentro das aspas a mensagem, é igual ao commit
+                depois
+            b. flask db upgrade
