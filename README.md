@@ -51,3 +51,7 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
             b. transformei o index no base
             c. criei o index novamente
             d. renderizei o arquivo index na função da homepage
+    3. -> Aplicando conceitos de routing
+        I. na views.py eu crio outra view de acesso ao menu, vendo que o inicio vai ser uma pagina de login.
+        II. import url_for dentro da views.py
+            a. apliquei o url_for no index.
