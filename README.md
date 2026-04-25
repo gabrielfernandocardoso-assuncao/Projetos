@@ -69,3 +69,13 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
             a. flask db migrate -m "msg" # dentro das aspas a mensagem, é igual ao commit
                 depois
             b. flask db upgrade
+
+# forms 1
+    1. -> apos direcionar o botao pesquisa para a pagina consultas, eu começo a criar o formulario do tipo get
+    2. -> importo o request, para validar o tipo de formulario
+    3. -> valido o tipo get para consultas e valido o tipo post para a consulta
+    4. -> importo o db (banco) na views para salvar os dados recuperados do tipo post
+    5. -> recupero os dados passando para variaveis com o request.form(nomedoinput)
+    6. -> salvo os dados instanciando-os na classe da tabela, depois uso o comando db.session.add(nomedatabela), depois envio os dados para o banco com o comando db.session.commit().
+
+

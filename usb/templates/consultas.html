@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Consultas {% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-12 mt-4">
+            <h1 style="text-align: center;">Consultas</h1>
+        </div>
+    </div>
+
+    {% include 'rotas.html' %}
+    <!-- formulario tipo get (buscas) -->
+    <!-- aplicando o metodo -->
+    <div class="container">
+        <form action="" method="get" class="row mt-4"> 
+            <div class="col-9">
+                <span>Digite o id da consulta:</span>
+                <input type="text" name="busca" id="" class="form-control"> 
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary mt-4 col-12">Pesquisar</button>
+            </div>
+        </form>
+        
+        <hr>
+
+        <p class="mt-4">Voce pesquisou {{ context.busca }}</p>
+    </div>
+{% endblock %}

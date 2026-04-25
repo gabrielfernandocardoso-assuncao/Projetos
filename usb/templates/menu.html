@@ -3,9 +3,81 @@
 {% block titulo %} Menu {% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-12 mt-4">
             <h1 style="text-align: center;">Menu</h1>
         </div>
     </div>
+    
+    {% include 'rotas.html' %}
+    
+    <!-- card das opções -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-auto"> <div class="card shadow-sm" style="width: 22rem;">
+                <div class="card-header bg-primary fw-bold text-white text-center">
+                    Escolha uma opção
+                </div>
+
+            <div class="card-body">
+                <div class="row g-2">
+                   <!-- botao com pop-up para consulta -->
+                    <div class="col-6 d-grid">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#consulta">Consulta</button>
+                    </div>
+
+                    <div class="modal fade" id="consulta" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content shadow-lg">
+
+                                <div class="modal-header bg-primary">
+                                        <h5 class="modal-title bg-primary" style="text-align: center;">Consulta</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                
+                                <!-- corpo do modal -->
+                                <div class="modal-body text-dark fw-bold" style="background-color: gray;">
+                                    <!-- Colocando o formulario no card -->
+                                    <!-- formulario tipo post -->
+                                    <form action="" method="post">
+                                        <div class="col-12">
+                                            <span>Nome</span>
+                                            <input type="text" name="nome" id="" class="form-control" placeholder="Digite seu nome completo..." required> 
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <span>Sintomas</span>
+                                            <input type="text" name="sintomas" id="" class="form-control" placeholder="Informe os sintomas..." required> 
+                                        </div>
+                                        <div class="w-100">
+                                            <button type="submit" class="btn btn-dark mt-4 col-12">Enviar</button>
+                                        </div>                          
+                                    </form>
+
+                                </div>
+
+                                <!-- footer do modal -->
+                                <div class="modal-footer bg-dark">
+                                    <!-- redirecionar para a pagina de lista de consultas -->
+                                    <a href="{{ url_for('consultas')}}" class="btn btn-primary">Pesquisar</a>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- resto dos botoes -->
+                   <div class="col-6 d-grid">
+                        <a href="" class="btn btn-primary">Diagnosticos</a>
+                   </div>
+                   <div class="col-6 d-grid">
+                        <a href="" class="btn btn-primary">Status</a>
+                   </div>
+                   <div class="col-6 d-grid">
+                        <a href="" class="btn btn-primary">Exames</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- card noticias -->
+
 {% endblock %}

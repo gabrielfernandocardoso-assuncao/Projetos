@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            Rotas -> 
+            <a href="{{ url_for('homepage')}}" class="btn btn-secondary">Pagina principal</a>
+            <a href="{{ url_for('menu')}}" class="btn btn-secondary">Menu</a>
+        </div>
+    </div>
+    <hr>
+{% endblock %}
