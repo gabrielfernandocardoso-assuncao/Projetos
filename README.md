@@ -93,3 +93,11 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         I. importar o db e a tabela do db
             from usb.models import Sintomas
     9. -> importo o redirect, para depois de enviar o formulario, redirecionar a pagina principal
+
+# recuperando dados
+    1. -> Apos toda criação de formulario para enviar os dados
+    2. -> crio uma nova pagina, que nela vai conter todos os dados do banco e tambem uma aba para pesquisa
+    3. -> atualizo a view, e estruturo a pagina, passando os dados da view para a pagina e acessando os mesmos
+        obs: na proxima view será utilizado o metodo correto de recuperar dados com if e for para nao ter erros de tamanho e busca
+
+

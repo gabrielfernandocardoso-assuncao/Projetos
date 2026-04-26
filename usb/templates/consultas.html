@@ -10,21 +10,35 @@
     </div>
 
     {% include 'rotas.html' %}
-    <!-- formulario tipo get (buscas) -->
-    <!-- aplicando o metodo -->
-    <div class="container">
-        <form action="" method="get" class="row mt-4"> 
+    <div class="row">
+        <form action="" method="get" class="row">
             <div class="col-9">
-                <span>Digite o id da consulta:</span>
-                <input type="text" name="busca" id="" class="form-control"> 
+                <input type="text" name="busca" id="" class="form-control" placeholder="Pesquise aqui..."> 
             </div>
             <div class="col-3">
-                <button type="submit" class="btn btn-primary mt-4 col-12">Pesquisar</button>
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
             </div>
         </form>
-        
-        <hr>
-
-        <p class="mt-4">Voce pesquisou {{ context.busca }}</p>
+        <div class="col-12 mt-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sintoma</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ context['dados'][0].nome }}</td>
+                        <td>{{ context['dados'][0].sintomas }}</td>
+                        <td>{{ context['dados'][0].data_envio.strftime('%d/%m/%Y') }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 {% endblock %}

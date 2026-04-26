@@ -29,12 +29,17 @@ def menu():
     return render_template('menu.html', form=form)
 
 # criando a rota diagnosticos
-@app.route('/consultas/')
-def consultas():
-    context = {}
-    # verificando se a requisão é do tipo get, que por padrao é.
+@app.route('/consulta/lista')
+def ConsultaLista():
     if request.method == 'GET':
-        busca = request.args.get('busca', None ) # aqui eu pego o que tá na barra de busca e devolvo como variavel
-        context.update({'busca' : busca}) # atualizando o dicionario
+        busca = request.args.get('busca', "")
+    
+    # variavel de busca
+    dados = Sintomas.query.order_by('data_envio') # para orderby para ordenar com base em uma coluna
+
+    if busca != "": 
+        dados = dados.filter_by(nome = busca)
+    context = { 'dados' : dados.all() }
+    
 
     return render_template('consultas.html', context=context)
