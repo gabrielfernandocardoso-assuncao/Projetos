@@ -2,11 +2,13 @@
 from usb import app, db
 
 # importando a função render_template, url_for
-from flask import render_template, url_for, request
+from flask import render_template, url_for, request, redirect
 
 # importando a classe da tabela onde vou salvar
 from usb.models import Sintomas
 
+# importando as classes de formulario
+from usb.forms import SintomasForm
 # passando uma rota
 @app.route('/') # rotas sao passadas entre "/"
 def homepage(): # função de renderização 
@@ -16,24 +18,15 @@ def homepage(): # função de renderização
 # criando a rota para o menu, apos o login
 @app.route('/menu/', methods={'GET', 'POST'})
 def menu():
-    if request.method == 'POST':
-        nome = request.form['nome'] # recupero o nome em uma variavel
-        sintomas = request.form['sintomas'] # recupero o sintomas em uma variavel
+    # passando o formulario
+    form = SintomasForm() # instanciando o formulario
 
-        # instanciando os dados na tabela
-        sintomas = Sintomas(
-            nome = nome,
-            sintomas = sintomas
-        )
+    if form.validate_on_submit(): # tipo de validação para method post
+        form.save() # melhorei o tratamento do formulario
 
-        # salvando os dados
-        db.session.add(sintomas) # adicionando os dados
-
-        # salvando "literalmente"
-        db.session.commit()
-
+        return redirect( url_for('menu') )
         
-    return render_template('menu.html')
+    return render_template('menu.html', form=form)
 
 # criando a rota diagnosticos
 @app.route('/consultas/')

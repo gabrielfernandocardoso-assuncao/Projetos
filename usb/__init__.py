@@ -12,6 +12,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # verificador do banco de dados 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# token de segurança
+app.config['SECRET_KEY'] = 'ADSFGIOEWQN90320T9832FENHV2W0E2'
+
 # definindo a variavel do banco de dados
 db = SQLAlchemy(app)
 

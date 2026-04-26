@@ -78,4 +78,18 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     5. -> recupero os dados passando para variaveis com o request.form(nomedoinput)
     6. -> salvo os dados instanciando-os na classe da tabela, depois uso o comando db.session.add(nomedatabela), depois envio os dados para o banco com o comando db.session.commit().
 
-
+# forms 2
+    1. -> instalar a biblioteca wtf
+        a. pip install flask_wtf
+    2. -> crio o arquivo forms.py
+    3. -> no forms.py eu importo do pacote flask_wtf a classe flaskforms
+    4. -> instancio um formulario
+    5. -> passo os campos, tipo de campos, nome e validators pras variaveis
+        obs: para usar o email tem que instalar a biblioteca email_validator
+            pip install email_validator
+    6. -> na view instanciei o formulario
+    7. -> no init criei uma secret key
+    8. -> criei a função de salvar para o formulario
+        I. importar o db e a tabela do db
+            from usb.models import Sintomas
+    9. -> importo o redirect, para depois de enviar o formulario, redirecionar a pagina principal

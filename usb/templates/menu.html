@@ -39,17 +39,17 @@
                                     <!-- Colocando o formulario no card -->
                                     <!-- formulario tipo post -->
                                     <form action="" method="post">
-                                        <div class="col-12">
-                                            <span>Nome</span>
-                                            <input type="text" name="nome" id="" class="form-control" placeholder="Digite seu nome completo..." required> 
-                                        </div>
-                                        <div class="col-12 mt-3">
-                                            <span>Sintomas</span>
-                                            <input type="text" name="sintomas" id="" class="form-control" placeholder="Informe os sintomas..." required> 
-                                        </div>
-                                        <div class="w-100">
-                                            <button type="submit" class="btn btn-dark mt-4 col-12">Enviar</button>
-                                        </div>                          
+                                        <!-- token de segurança -->
+                                        {{ form.csrf_token }} 
+
+                                        <!-- pra cada campo temos que passar -->
+                                        {{ form.nome.label() }}
+                                        {{ form.nome(class='form-control') }}
+
+                                        {{ form.sintomas.label() }}
+                                        {{ form.sintomas(class='form-control') }}
+
+                                        {{ form.btnsubmit(class='btn btn-primary col-12 mt-3') }}
                                     </form>
 
                                 </div>
