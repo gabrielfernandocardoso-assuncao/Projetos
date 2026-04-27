@@ -111,3 +111,14 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     2. -> extends herda o arquivo referenciado
     3. -> include incluir o arquivo todo na pagina, ideal para reutilizar trechos especificos como o arquivo rota.
 
+# Arquivos staticos
+    1. -> para trabalhar com arquivos staticos eu crio a pasta static e suas subpastas.
+        a. css
+        b. data
+        c. img
+        d. js
+    2. -> passar o dado em variavel para o html
+        a. ter a biblioteca urlfor importada na view
+        b. comando 
+            -> {{ url_for('static', filename='img/icone_detail.png' )}} || static é o nome da pasta criada, filenmae='#' pede o caminho dentro da pasta ate o arquivo.
+
