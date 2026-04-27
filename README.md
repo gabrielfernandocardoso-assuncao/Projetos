@@ -100,4 +100,14 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     3. -> atualizo a view, e estruturo a pagina, passando os dados da view para a pagina e acessando os mesmos
         obs: na proxima view será utilizado o metodo correto de recuperar dados com if e for para nao ter erros de tamanho e busca
 
+# usando a estrutura if e for no html
+    1. -> na view, passo os dados para uma variavel com o query, filter_by e order_by
+    2. -> na pagina consultas eu faço uso do for, para acessar 1 por um
+    3. -> farei uso do if na pagina status
+    5. -> crio a pagina status e referencio ela no menu
+
+# reaproveitando paginas
+    1. -> temos os comandos extends 'nomedapagina' e include 'nomadapagina'.
+    2. -> extends herda o arquivo referenciado
+    3. -> include incluir o arquivo todo na pagina, ideal para reutilizar trechos especificos como o arquivo rota.
 

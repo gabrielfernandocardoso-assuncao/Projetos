@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Consultas {% endblock %}
+{% block titulo %}Status {% endblock %}
 
 {% block content %}
     <div class="row justify-content-center">
         <div class="col-12 mt-4">
-            <h1 style="text-align: center;">Consultas</h1>
+            <h1 style="text-align: center;">Status</h1>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Sintoma</th>
+                        <th>Status</th>
                         <th>Data</th>
                     </tr>
                 </thead>
@@ -32,7 +32,7 @@
                     {% for linha in context['dados'] %}
                     <tr>
                         <td>{{ linha.nome }}</td>
-                        <td>{{ linha.sintomas }}</td>
+                        <td>{{ linha.status }}</td>
                         <td>{{ linha.data_envio.strftime('%d/%m/%Y') }}</td>
                     </tr>
                     {% endfor %}
@@ -40,6 +40,4 @@
             </table>
         </div>
     </div>
-
-
 {% endblock %}

@@ -32,14 +32,28 @@ def menu():
 @app.route('/consulta/lista')
 def ConsultaLista():
     if request.method == 'GET':
-        busca = request.args.get('busca', "")
+        busca = request.args.get('busca', "") # retirando o dado de busca
     
     # variavel de busca
     dados = Sintomas.query.order_by('data_envio') # para orderby para ordenar com base em uma coluna
 
-    if busca != "": 
-        dados = dados.filter_by(nome = busca)
-    context = { 'dados' : dados.all() }
+    if busca != "": # vendo se é diferente de vazio
+        dados = dados.filter_by(nome = busca) # filtrando a pesquisa
+    context = { 'dados' : dados.all() } # retornando os valores pesquisados do banco
     
-
     return render_template('consultas.html', context=context)
+
+# criando a rota status
+@app.route('/status/')
+def Status():
+    if request.method == 'GET':
+        busca = request.args.get('busca', "")
+
+    dados = Sintomas.query.order_by('data_envio')
+
+    if busca != "":
+        dados = dados.filter_by(nome = busca)
+
+    context = { 'dados' : dados.all() }
+
+    return render_template('status.html', context = context)
