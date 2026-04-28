@@ -2,15 +2,45 @@
 from flask_wtf import FlaskForm
 
 # importando o tipo de campo e os validators
-from wtforms import StringField, EmailField, PasswordField, SubmitField
+from wtforms import StringField, EmailField, PasswordField, SubmitField, PasswordField
 
 # importando os validators
-from wtforms.validators import DataRequired, Email
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 # importando as tabelas e o db
-from usb import db
-from usb.models import Sintomas
+from usb import db, bcrypt
+from usb.models import Sintomas, Usuario
 
+# criando o formulario de Login
+class UserForm(FlaskForm):
+    nome = StringField('Nome', validators=[DataRequired()])
+    sobrenome = StringField('Nome', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    confirmacao_senha = PasswordField('Senha', validators=[DataRequired(), EqualTo('senha')])
+    btnSubmit = SubmitField('Cadastrar')
+
+    # função validator
+    def validate_email(self, email): # tem que ser 'validate_' e o nome do campo 'email'
+        if Usuario.query.filter(email=email.data).first(): # first pega o primeiro resultado, data pega o que tem dentro da variavel.
+            return ValidationError('Usuario já cadastrado com esse email!!')
+        
+    # função de salvar
+    def save(self):
+        senha = bcrypt.generate_password_hash(self.senha.data.encode('utf-8')) # encode('utf-8') para aceitar escrita brasileira, boa pratica
+
+        # criando o Usuario
+        usuario = Usuario(
+            nome = self.nome.data,
+            sobrenome = self.sobrenome.data,
+            email = self.email.data,
+            senha = senha
+        )
+
+        # salvando 
+        db.session.add(usuario)
+        db.session.commit()
+        
 # criando a classe do formulario
 class SintomasForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()]) # na variavel, passar o tipo de campo, nome da referencia, passar os validators 

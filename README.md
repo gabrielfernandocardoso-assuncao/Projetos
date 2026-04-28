@@ -153,3 +153,14 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         @login_manager.user_load
         def load_user(user_id):
         return User.query.get(user_id)
+    8. -> dar o migrate no db
+
+# Login 2 
+    1. -> criando o formulario de login, no arquivo forms, class User
+    2. -> importar os campos PasswordField(wtforms) e EqualTo(validator)
+    3. -> Criar o proprio validator, Importar o ValidationError(validators)
+    4. -> importar a tabela de usuario do models
+    5. -> Criar a função de salvar os dados
+    6. -> importar o bcrypt pra criptografar os dados no save
+    7. -> Salvar os dados na tabela.
+
