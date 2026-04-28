@@ -127,15 +127,3 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     2. -> exemplo: na view eu crio uma rota nova com a sintaxe ('/#/<int:id>'), a hashtag é qualquer nome, o int pode ser qualquer tipo de dado e o id é a variavel que quer passar como parametro de acesso.
     3. -> fiz uso nos modais.
 
-# Segurança no projeto, ambiente virtual
-    1. -> Criar o arquivo .env (variavel de ambiente)
-    2. -> criar o gitignore que foi esquecido.
-    3. -> enviar variaveis sensiveis para o ambiente virtual, como URI, SECRETKEY
-    4. -> instalar biblioteca dotenv para ministrar essas variaveis
-    5. -> criar uma secret key de maneira correta
-        a. criar um arquivo separado que vai ser deletado apos o uso.
-            I. criar o arquivo create_secret -> pode ser qualquer nome
-            II. usar os seguintes comandos:
-                import secrets
-                sk = secrets.token_hex(24) -> o 24 é o valor de caracteres que vai ter, pode ser alterado
-                print(sk) -> pegar a chave
