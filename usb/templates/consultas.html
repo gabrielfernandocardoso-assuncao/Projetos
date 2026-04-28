@@ -26,6 +26,7 @@
                         <th>Nome</th>
                         <th>Sintoma</th>
                         <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,89 @@
                         <td>{{ linha.nome }}</td>
                         <td>{{ linha.sintomas }}</td>
                         <td>{{ linha.data_envio.strftime('%d/%m/%Y') }}</td>
+                        <td>
+                            <!-- modal de detalhes -->
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#detalhes{{ linha.id }}"><img src="{{ url_for('static', filename='img/icone_detail.png')}}" style="max-width: 20px;"></button>
+
+                            <div class="modal fade" id="detalhes{{ linha.id }}" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content shadow-lg">
+
+                                        <div class="modal-header bg-info">
+                                            <!-- titulo do modal  -->
+                                            <h5 class="modal-title bg-info" style="text-align: center;">Dados da consulta</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body text-dark fw-bold">
+                                            <!-- corpo modal -->
+                                             <div class="row">
+                                                <div class="col-12">
+                                                    <h3 style="text-align: center; ">Paciente - {{ linha.nome }}</h3>
+                                                    <hr>
+                                                </div>
+                                                
+                                                <div class="card shadow-sm"> <div class="card-body p-0"> <table class="table table-hover table-striped mb-0">
+                                                    <!-- Cabeçalho da tabela -->
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th class="ps-4">Id</th>
+                                                            <th>Nome</th>
+                                                            <th class="text-center">Status</th>
+                                                            <th class="text-end pe-4"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <!-- Corpo da tabela -->
+                                                    <tbody>
+                                                        <tr class="align-middle"> <td class="ps-4 text-muted">#{{ linha.id }}</td>
+                                                            <td class="fw-bold">{{ linha.nome }}</td>
+                                                            <td class="text-center">
+                                                                {# Transformando o texto em uma Badge colorida #}
+                                                                {% if linha.status == 'Enviado' %}
+                                                                    <span class="badge rounded-pill bg-secondary">Enviado</span>
+                                                                {% elif linha.status == 'Analisando' %}
+                                                                    <span class="badge rounded-pill bg-warning text-dark">Analisando</span>
+                                                                {% elif linha.status == 'Respondido' %}
+                                                                    <span class="badge rounded-pill bg-info">Respondido</span>
+                                                                {% elif linha.status == 'Entregue' %}
+                                                                    <span class="badge rounded-pill bg-success">Entregue</span>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table></div></div>
+
+                                                <hr>    
+
+                                                <!-- card de comentario -->
+                                                <div class="card border-white mb-3 shadow-sm" style="max-width: 10rem;">
+                                                    <div class="card-header text-dark" style="background-color: gray; width: 28rem;">
+                                                        {% if linha.status == 'Entregue' %}
+                                                            <h5>Entregue a clinica</h5>
+                                                        {% elif linha.status == 'Marcado' %}
+                                                            <h5>Exame Marcado</h5>
+                                                        {% elif linha.status == 'Analise' %}
+                                                            <h5>Analise - IA</h5>
+                                                        {% elif linha.status == 'Enviado' %}
+                                                            <h5>Espera da Analise</h5>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="card-body" style="background-color: whitesmoke; width: 28rem;">
+                                                        <span class="fs-6">Resposta ou Analise da IA...</span>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </div>
+
+                                        <div class="modal-footer bg-dark">
+                                            <!-- pe do modal -->
+                                             <a href="{{ url_for('Status')}}" class="btn btn-primary">Status</a>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

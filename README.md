@@ -122,3 +122,7 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         b. comando 
             -> {{ url_for('static', filename='img/icone_detail.png' )}} || static é o nome da pasta criada, filenmae='#' pede o caminho dentro da pasta ate o arquivo.
 
+# Rotas dinamicas
+    1. -> Possivel recuperar variaveis e fazer acessos diferentes
+    2. -> exemplo: na view eu crio uma rota nova com a sintaxe ('/#/<int:id>'), a hashtag é qualquer nome, o int pode ser qualquer tipo de dado e o id é a variavel que quer passar como parametro de acesso.
+    3. -> fiz uso nos modais.
