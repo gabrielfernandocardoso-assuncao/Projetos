@@ -139,3 +139,17 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
                 import secrets
                 sk = secrets.token_hex(24) -> o 24 é o valor de caracteres que vai ter, pode ser alterado
                 print(sk) -> pegar a chave 
+
+# Login
+    1. -> Instalar as biblioteca
+        a. pip install flask-login
+        b. pip install flask-bcrypt
+    2. -> no app, __init__ importar o LoginManager do flask_login
+    3. -> importar tambem do flask_bcrypt o bcrypt
+    4. -> para configurar o login manager, criar as variaveis login_manager e bcrypt instanciando-as, definir uma view padrao para login, caso usuario nao estiver logado.
+    5. -> definir uma tabela de login/cadastro
+    6. -> passar o Usermixin na tabela defindo a como tabela de login
+    7. -> criar uma função que retorna o usuario atual
+        @login_manager.user_load
+        def load_user(user_id):
+        return User.query.get(user_id)

@@ -12,6 +12,10 @@ from dotenv import load_dotenv
 # carregando o arquivo
 load_dotenv('.env') # esse arquivo pode ter qualquer nome
 
+# carregando os arquivos do flasklogin e o bcrypt
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
+
 # startando o aplicativo
 app = Flask(__name__) # ele vai iniciar o aplicativo com base nesse arquivo.
 
@@ -29,6 +33,15 @@ db = SQLAlchemy(app)
 
 # definindo o app de migrate
 migrate = Migrate(app, db)
+
+# definindo o loginmanager
+login_manager = LoginManager(app)
+
+# definindo o Bcrypt
+bcrypt = Bcrypt()
+
+# definindo a view de login
+login_manager.login_view = 'login'
 
 # caso der erro de url importar a rota
 from usb.views import homepage # importar no final para nao gerar erro
