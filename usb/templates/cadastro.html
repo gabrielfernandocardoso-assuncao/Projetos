@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastro{% endblock %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        
+    {% else %}
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+            <div class="alert alert-{{ categoria }} alert-dismissible fade show" role="alert">
+                {{ mensagem }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row mt-4 justify-content-center">
+            <div class="card shadow-sm" style="background-color: antiquewhite; width: 50rem;">
+                <div class="card-body rounded" style="background-color: gray;">
+                    <h1 class="card-title border-bottom pb-2 bg-primary rounded fw-bold" style="color: black; text-align: center;">Login</h1>
+                </div>
+                <div class="bg-white p-3 rouded border" style="min-height: 100px; white-space: pre-wrap;">
+                    
+                
+                    <!-- modal Cadastro -->
+                    <div class="card-footer rounded shadow">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastro">Cadastrar</button>
+                        
+                        <div class="modal fade" id="cadastro" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content shadow">
+                                    <div class="modal-header bg-info">
+                                        <h5 class="modal-title">Cadastrar...</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    
+                                    <div class="modal-body" style="color: black;">
+                                        <form action="" method="post" class="row p-4 rounded border shadow">
+                                            <!-- token de segurança -->
+                                            {{ form.csrf_token }}
+
+                                            <!-- Nome -->
+                                            {{ form.nome.label() }}
+                                            {{ form.nome(class="form-control") }}
+                                            
+                                            <!-- sobrenome -->
+                                            {{ form.sobrenome.label() }}
+                                            {{ form.sobrenome(class="form-control") }}
+
+                                            <!-- email -->
+                                            {{ form.email.label() }}
+                                            {{ form.email(class="form-control") }}
+                                        
+                                            <!-- senha -->
+                                            {{ form.senha.label() }}
+                                            {{ form.senha(class="form-control") }}
+
+                                            <!-- confirmar senha -->
+                                            {{ form.confirmacao_senha.label() }}
+                                            {{ form.confirmacao_senha(class="form-control") }}
+
+                                            <!-- botao submit -->
+                                            {{ form.btnSubmit(class="btn btn-primary mt-4") }}
+
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer bg-secondary">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

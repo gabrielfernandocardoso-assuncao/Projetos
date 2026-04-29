@@ -14,15 +14,15 @@ from usb.models import Sintomas, Usuario
 # criando o formulario de Login
 class UserForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
-    sobrenome = StringField('Nome', validators=[DataRequired()])
+    sobrenome = StringField('Sobrenome', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     senha = PasswordField('Senha', validators=[DataRequired()])
-    confirmacao_senha = PasswordField('Senha', validators=[DataRequired(), EqualTo('senha')])
+    confirmacao_senha = PasswordField('Confirmar Senha', validators=[DataRequired(), EqualTo('senha')])
     btnSubmit = SubmitField('Cadastrar')
 
     # função validator
     def validate_email(self, email): # tem que ser 'validate_' e o nome do campo 'email'
-        if Usuario.query.filter(email=email.data).first(): # first pega o primeiro resultado, data pega o que tem dentro da variavel.
+        if Usuario.query.filter_by(email=email.data).first(): # first pega o primeiro resultado, data pega o que tem dentro da variavel.
             return ValidationError('Usuario já cadastrado com esse email!!')
         
     # função de salvar
@@ -40,7 +40,10 @@ class UserForm(FlaskForm):
         # salvando 
         db.session.add(usuario)
         db.session.commit()
-        
+
+        return usuario
+
+
 # criando a classe do formulario
 class SintomasForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()]) # na variavel, passar o tipo de campo, nome da referencia, passar os validators 

@@ -2,21 +2,32 @@
 from usb import app, db
 
 # importando a função render_template, url_for
-from flask import render_template, url_for, request, redirect
+from flask import render_template, url_for, request, redirect, flash
+
+# importando as dependencias de login
+from flask_login import login_user, logout_user, current_user
 
 # importando a classe da tabela onde vou salvar
 from usb.models import Sintomas
 
 # importando as classes de formulario
-from usb.forms import SintomasForm
+from usb.forms import SintomasForm, UserForm
 # passando uma rota
-@app.route('/') # rotas sao passadas entre "/"
+@app.route('/cadastro/', methods=['GET', 'POST']) # rotas sao passadas entre "/"
 def homepage(): # função de renderização 
-
-    return render_template('index.html') # renderizando uma string, renderizando um template
+    form = UserForm()
+    if form.validate_on_submit():
+        # Se chegou aqui, o WTForms já validou que o e-mail não é repetido
+        user = form.save() 
+        if user:
+            login_user(user, remember=True)
+            return redirect(url_for('menu'))
+        else:
+            flash("Erro ao criar usuário. Tente novamente.", "danger")
+    return render_template('cadastro.html', form=form) # renderizando uma string, renderizando um template
 
 # criando a rota para o menu, apos o login
-@app.route('/menu/', methods={'GET', 'POST'})
+@app.route('/menu/', methods=['GET', 'POST'])
 def menu():
     # passando o formulario
     form = SintomasForm() # instanciando o formulario

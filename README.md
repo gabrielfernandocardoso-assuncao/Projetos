@@ -164,3 +164,8 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     6. -> importar o bcrypt pra criptografar os dados no save
     7. -> Salvar os dados na tabela.
 
+# login 3
+    1. -> Criar as paginas, atribuir os formularios nas paginas e ajustalas.
+    2. -> passar methods get e post, passar o form, e salvar os dados pela view
+    3. -> importar as bibliotecas login_user, logout_user, current_user do flask_login
+    4. -> validar o formulario, instanciar os dados em uma variavel, fazer o login com essa variavel, depois, redirecionar para a pagina respectiva(menu)
