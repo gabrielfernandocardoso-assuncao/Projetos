@@ -169,3 +169,10 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     2. -> passar methods get e post, passar o form, e salvar os dados pela view
     3. -> importar as bibliotecas login_user, logout_user, current_user do flask_login
     4. -> validar o formulario, instanciar os dados em uma variavel, fazer o login com essa variavel, depois, redirecionar para a pagina respectiva(menu)
+
+# login 4
+    1. -> criar a pagina de logout
+    2. -> configurar a rota de logout
+    3. -> criar pagina e rota de login
+    4. -> criar formulario de login
+    5. -> cofigurar rota de login.

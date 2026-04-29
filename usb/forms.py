@@ -43,6 +43,26 @@ class UserForm(FlaskForm):
 
         return usuario
 
+# criando o formulario de login
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    btnSubmit = SubmitField('Login')
+
+    # função de login
+    def login(self):
+        # recuperar o usuario do email
+        user = Usuario.query.filter_by(email=self.email.data).first()
+
+        # verificar se a senha é valida
+        if user:
+            if bcrypt.check_password_hash(user.senha, self.senha.data.encode('utf-8')):
+                # retorna o usuario
+                return user 
+            else:
+                raise Exception("Senha incorreta!!")
+        else:
+            raise Exception("Usuario não encontrado!!")
 
 # criando a classe do formulario
 class SintomasForm(FlaskForm):

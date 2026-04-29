@@ -11,11 +11,21 @@ from flask_login import login_user, logout_user, current_user
 from usb.models import Sintomas
 
 # importando as classes de formulario
-from usb.forms import SintomasForm, UserForm
+from usb.forms import SintomasForm, UserForm, LoginForm
+
 # passando uma rota
 @app.route('/cadastro/', methods=['GET', 'POST']) # rotas sao passadas entre "/"
 def homepage(): # função de renderização 
     form = UserForm()
+    login_form = LoginForm()
+
+    # verificando login
+    if login_form.validate_on_submit():
+        user = login_form.login()
+        login_user(user, remember=True)
+        return redirect(url_for('menu'))
+
+   # verificando cadastro
     if form.validate_on_submit():
         # Se chegou aqui, o WTForms já validou que o e-mail não é repetido
         user = form.save() 
@@ -24,7 +34,16 @@ def homepage(): # função de renderização
             return redirect(url_for('menu'))
         else:
             flash("Erro ao criar usuário. Tente novamente.", "danger")
-    return render_template('cadastro.html', form=form) # renderizando uma string, renderizando um template
+
+    return render_template('cadastro.html', form=form, login_form=login_form) # renderizando uma string, renderizando um template
+
+# criando a rota de logout
+@app.route('/sair/')
+def Logout():
+    logout_user()
+
+    return redirect(url_for('homepage'))
+
 
 # criando a rota para o menu, apos o login
 @app.route('/menu/', methods=['GET', 'POST'])
