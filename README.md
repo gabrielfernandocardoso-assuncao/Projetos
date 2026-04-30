@@ -176,3 +176,11 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     3. -> criar pagina e rota de login
     4. -> criar formulario de login
     5. -> cofigurar rota de login.
+
+# relationship
+    1. -> no models criar a tabela que vai se relacionar
+    2. -> criar a variavel de chave estrangeira "variavel = db.Column(db.Integer, db.ForeignKey('sintomas.id'), nullable = True )", o Foreignkey("tabela."coluna"") serve para passar a chave estrangeira para gerar a relação
+    3. -> relacionar a tabela com a que vai ser relacionada "variavel = db.relationship('Diagnosticos', backref='diagnostico', lazy=True)", "Diagnosticos" é o parametro referente a tabela que quer se relacionar, backref="nome" é como a relação vai se chamar, "lazy=True" permite a interação vice e versa, as tabelas podem buscar dados umas das outras.
+    4. -> salvar alteração no banco de dados
+        flask db migrate
+        flask db upgrade

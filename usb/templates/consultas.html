@@ -103,7 +103,14 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="card-body" style="background-color: whitesmoke; width: 28rem;">
-                                                        <span class="fs-6">Resposta ou Analise da IA...</span>
+                                                        <form action="" method="post" class="row  rounded border shadow">
+                                                            {{ form.csrf_token }}
+
+                                                            {{ form.resposta.label() }}
+                                                            {{ form.resposta(class="form-control")}}
+
+                                                            {{ form.btnsubmit(class="btn btn-primary col-12 mt-3") }}
+                                                        </form>
                                                     </div>
                                                 </div>
                                              </div>

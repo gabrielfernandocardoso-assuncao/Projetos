@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Consultas {% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-12 mt-4">
+            <h1 style="text-align: center;">Diagnosticos</h1>
+        </div>
+    </div>
+
+    {% include 'rotas.html' %}
+    <div class="row">
+        
+        <div class="col-12 mt-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Diagnostico</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for linha in diagnosticos %}
+                        <tr>
+                            <td>{{ linha.sintomas_id }}</td>
+                            <td>{{ linha.resposta }}</td>
+                            <td>{{ linha.data_criacao.strftime('%d/%m/%Y') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

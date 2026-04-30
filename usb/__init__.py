@@ -27,6 +27,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # token de segurança
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # acessando as variaveis do ambiente virtual
+# Naming Convention
+from sqlalchemy import MetaData
+
+# Define um padrão de nomes para as restrições do banco
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+
+# Inicialize o db passando essa convenção
+metadata = MetaData(naming_convention=convention)
+db = SQLAlchemy(metadata=metadata)
 
 # definindo a variavel do banco de dados
 db = SQLAlchemy(app)

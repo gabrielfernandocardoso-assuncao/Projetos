@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 # importando as tabelas e o db
 from usb import db, bcrypt
-from usb.models import Sintomas, Usuario
+from usb.models import Sintomas, Usuario, Diagnosticos
 
 # criando o formulario de Login
 class UserForm(FlaskForm):
@@ -62,7 +62,7 @@ class LoginForm(FlaskForm):
             else:
                 raise Exception("Senha incorreta!!")
         else:
-            raise Exception("Usuario não encontrado!!")
+            return None
 
 # criando a classe do formulario
 class SintomasForm(FlaskForm):
@@ -82,4 +82,17 @@ class SintomasForm(FlaskForm):
         db.session.add(sintomas) # adicionando os dados
 
         # salvando "literalmente"
+        db.session.commit()
+
+class DiagnosticoForm(FlaskForm):
+    resposta = StringField('Diagnostico', validators=[DataRequired()])
+    btnsubmit = SubmitField('Enviar')
+
+    def save(self, sintomas_id):
+        diagnostico = Diagnosticos (
+            resposta = self.resposta.data,
+            sintomas_id = sintomas_id
+        )
+
+        db.session.add(diagnostico)
         db.session.commit()
