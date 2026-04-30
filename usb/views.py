@@ -5,7 +5,7 @@ from usb import app, db
 from flask import render_template, url_for, request, redirect, flash
 
 # importando as dependencias de login
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 # importando a classe da tabela onde vou salvar
 from usb.models import Sintomas, Diagnosticos
@@ -42,6 +42,7 @@ def homepage(): # função de renderização
 
 # criando a rota de logout
 @app.route('/sair/')
+@login_required
 def Logout():
     logout_user()
 
@@ -50,6 +51,7 @@ def Logout():
 
 # criando a rota para o menu, apos o login
 @app.route('/menu/', methods=['GET', 'POST'])
+@login_required
 def menu():
     # passando o formulario
     form = SintomasForm() # instanciando o formulario
@@ -63,6 +65,7 @@ def menu():
 
 # criando a rota de diagnosticos
 @app.route('/diagnosticos/')
+@login_required
 def diagnosticos():
     # recuperando os diagnosticos
     diagnosticos = Diagnosticos.query.all()
@@ -90,6 +93,7 @@ def ConsultaLista():
 
 # criando a rota status
 @app.route('/status/')
+@login_required
 def Status():
     if request.method == 'GET':
         busca = request.args.get('busca', "")

@@ -5,7 +5,6 @@
     <div class="row">
         <div class="col-12">
             Rotas -> 
-            <a href="{{ url_for('homepage')}}" class="btn btn-secondary">Pagina principal</a>
             <a href="{{ url_for('menu')}}" class="btn btn-secondary">Menu</a>
             {% if current_user.is_authenticated %}
                 <a href="{{ url_for('Logout')}}" class="btn btn-danger">Sair</a>

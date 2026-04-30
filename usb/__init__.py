@@ -56,7 +56,7 @@ login_manager = LoginManager(app)
 bcrypt = Bcrypt()
 
 # definindo a view de login
-login_manager.login_view = 'login'
+login_manager.login_view = 'homepage'
 
 # caso der erro de url importar a rota
 from usb.views import homepage # importar no final para nao gerar erro

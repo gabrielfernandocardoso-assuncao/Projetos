@@ -183,4 +183,13 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
     3. -> relacionar a tabela com a que vai ser relacionada "variavel = db.relationship('Diagnosticos', backref='diagnostico', lazy=True)", "Diagnosticos" é o parametro referente a tabela que quer se relacionar, backref="nome" é como a relação vai se chamar, "lazy=True" permite a interação vice e versa, as tabelas podem buscar dados umas das outras.
     4. -> salvar alteração no banco de dados
         flask db migrate
-        flask db upgrade
+        flask db upgrade 
+
+# login required
+    1. -> na view, importar do flask login, login_required
+    2. -> para aplicar, nas rotas da view, antes da função, colocar:
+        @login_required
+    3. -> definindo permissões, na primeira linha da função, verificar com
+        if current_user.id == "int:id": # id que tem acesso livre, usar uma variavel boleana, implementada no bd
+        se o usuario logado é ou não o permitido e dando continuidade
+        "" return redirect(url_for('nome da pagina')) # colocar no parametro a pagina de retorno caso não tiver acesso livre.
