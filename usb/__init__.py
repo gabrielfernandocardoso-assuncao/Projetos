@@ -58,6 +58,9 @@ bcrypt = Bcrypt()
 # definindo a view de login
 login_manager.login_view = 'homepage'
 
+# configurando para receber os uploads
+app.config['UPLOAD_FILE'] = r"static/data"
+
 # caso der erro de url importar a rota
 from usb.views import homepage # importar no final para nao gerar erro
 

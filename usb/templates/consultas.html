@@ -103,11 +103,14 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="card-body" style="background-color: whitesmoke; width: 28rem;">
-                                                        <form action="" method="post" class="row  rounded border shadow">
+                                                        <form action="" method="post" class="row  rounded border shadow" enctype="multipart/form-data">
                                                             {{ form.csrf_token }}
 
                                                             {{ form.resposta.label() }}
                                                             {{ form.resposta(class="form-control")}}
+
+                                                            {{ form.relatorio.label() }}
+                                                            {{ form.relatorio(class="form-control")}}
 
                                                             {{ form.btnsubmit(class="btn btn-primary col-12 mt-3") }}
                                                         </form>

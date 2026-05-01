@@ -4,12 +4,21 @@ from flask_wtf import FlaskForm
 # importando o tipo de campo e os validators
 from wtforms import StringField, EmailField, PasswordField, SubmitField, PasswordField
 
+# importando os campos de arquivo
+from flask_wtf.file import FileField, FileAllowed
+
 # importando os validators
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 # importando as tabelas e o db
-from usb import db, bcrypt
+from usb import db, bcrypt, app
 from usb.models import Sintomas, Usuario, Diagnosticos
+
+# biblioteca usada pra salvar arquivo 
+import os
+
+# segurança no bd
+from werkzeug.utils import secure_filename
 
 # criando o formulario de Login
 class UserForm(FlaskForm):
@@ -86,13 +95,27 @@ class SintomasForm(FlaskForm):
 
 class DiagnosticoForm(FlaskForm):
     resposta = StringField('Diagnostico', validators=[DataRequired()])
+    relatorio = FileField('Relatorio/PDF', validators=[ DataRequired(), FileAllowed(['png', 'pdf', 'jpg'])]) # criando o campo
     btnsubmit = SubmitField('Enviar')
 
     def save(self, sintomas_id):
+        relatorio = self.relatorio.data
+        nome_seguro = secure_filename(relatorio.filename)
         diagnostico = Diagnosticos (
             resposta = self.resposta.data,
-            sintomas_id = sintomas_id
+            sintomas_id = sintomas_id,
+            relatorio = nome_seguro # salvando na tabela o arquivo
         )
 
+        caminho = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)), # vai buscar o caminho configurado pra salvar no init
+            # importar o app tambem
+            app.config['UPLOAD_FILE'],
+            # definir qual pasta vai salvar
+            'diagnostico',
+            nome_seguro
+        )
+        
+        relatorio.save(caminho)
         db.session.add(diagnostico)
         db.session.commit()

@@ -31,6 +31,7 @@ class Sintomas(db.Model): # estrutura da tabela
 class Diagnosticos(db.Model): # criando a tabela que vai se relacionar com a tabela sintomas
     id = db.Column(db.Integer, primary_key = True)
     resposta = db.Column(db.String, nullable = True)
+    relatorio = db.Column(db.String, nullable = True, default='default.png')
     data_criacao = db.Column(db.DateTime, default = datetime.utcnow())
 
     # relacionando table Usuario

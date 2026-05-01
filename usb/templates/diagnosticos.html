@@ -18,6 +18,7 @@
                     <tr>
                         <th>id</th>
                         <th>Diagnostico</th>
+                        <th>Relatorio</th>
                         <th>Data</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td>{{ linha.sintomas_id }}</td>
                             <td>{{ linha.resposta }}</td>
+                            <td><img src="{{ url_for('static', filename='data/diagnostico/' ~ linha.relatorio)}}" alt="relatorio.png" style="max-width: 30px;"></td>
                             <td>{{ linha.data_criacao.strftime('%d/%m/%Y') }}</td>
                         </tr>
                     {% endfor %}

@@ -193,3 +193,15 @@ aqui vai ser criado projetos utilitarios para o dia a dia, contendo flask, pytho
         if current_user.id == "int:id": # id que tem acesso livre, usar uma variavel boleana, implementada no bd
         se o usuario logado é ou não o permitido e dando continuidade
         "" return redirect(url_for('nome da pagina')) # colocar no parametro a pagina de retorno caso não tiver acesso livre.
+
+# upload de arquivos
+    1. Oque fazer?
+        a. Criar a pasta no server
+        b. configurar a pasta no app.config
+        c. Alterar models para receber o nome do arquivo
+        d. alterar o form para salvar o arquivo na pasta e o nome no db
+
+    2. Na pasta static, criar outra pasta chamda data. dentro criar uma pasta com o nome referente ao item que vai salvar, aqui "diagnostico", depois, configurar o servidor 
+    3. apos o app, app.config['UPLOAD_FILES'] = r"static/data"
+    4. no models, na tabela, definir um novo campo, "campo" = db.Column(db.String, nullable = True, default='default.png'), colocar o default, e baixar a imagem dentro da pasta gerada.
+    5. configurar o formulario, importar o campo filefild, as funcionalidades importar os e secure_file name do werkzurg.utils, importar o app, e seguir os passos pos save na tabela
